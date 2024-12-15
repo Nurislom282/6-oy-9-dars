@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load gul_tags %}
+
+
+{% block turlar %}
+<div class="d-flex justify-content-center">
+    {% get_turs as tur %}
+    {% for t in tur %}
+<div>
+    <a href="{% url 'gul_by_tur' t.id  %}" style="margin-right: 10px;" type="button" class="btn btn-primary mt-5 mb-5" data-mdb-ripple-init>
+        {{ t.name }}
+    </a>
+</div>
+    {% endfor %}
+</div>
+{% endblock turlar %}
+
+{% block gul %}
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for gul in guls %}
+    {% include 'components/news/_card.html' %}
+    {% endfor %}
+</div>
+{% endblock gul %}

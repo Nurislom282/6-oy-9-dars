@@ -1,0 +1,36 @@
+<div class="col">
+    <div class="card h-100">
+        <a href="{% url 'detail' gul.pk %}">
+        {% if gul.photo %}
+        <img src="{{ gul.photo.url }}" class="card-img-top" alt="{{ gul.photo.name }}"/>
+        {% else %}
+      <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/042.webp" class="card-img-top" alt="Palm Springs Road"/>
+      {% endif %}
+        </a>
+        <div>
+            {% if '/gul/' in request.path %}
+            {% if gul.video %}
+            <video src="{{ gul.video.url }}" controls></video>
+            {% endif %}
+            {% endif %}
+        </div>
+        <div class="card-body">
+            <a href="{% url 'detail' gul.pk %}">
+        <h5 class="card-title">{{ gul.name }}</h5>
+            </a>
+        <p class="card-text">
+            {% if '/guls/' in request.path %}
+            {{ gul.info|linebreaks }}
+            {% else %}
+            {{ gul.info|truncatewords:10 }}
+            {% endif %}
+        </p>
+      </div>
+      <div class="card-footer d-flex justify-content-between">
+        <small class="text-muted">{{ gul.created }}</small>
+        <a href="{% url 'gul_by_tur' gul.turi.id  %}">
+            <small class="text-muted">{{ gul.turi.name }}</small>
+        </a>
+      </div>
+    </div>
+  </div>
