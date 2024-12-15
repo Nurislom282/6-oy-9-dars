@@ -13,13 +13,14 @@ def index(request:WSGIRequest):
     return render(request,"index.html",context)
 
 def gul_by_tur(request, turi_id):
-    gul = get_object_or_404(Gul, pk=turi_id)
-    turs = Turlar.objects.filter(turi_id=turi_id)
+    guls = Gul.objects.filter(turi_id=turi_id)
+    turs = get_object_or_404(Turlar, pk=turi_id)
     context = {
-        "turs": turs,
-        "title": f"{gul.name}: Barcha Gullar!"
+        "guls": guls,
+        "title": f"{turs.name}: Barcha Gullar!"
     }
     return render(request, "index.html", context)
+
 
 
 def gul_detail(request: WSGIRequest, pk):
