@@ -8,7 +8,7 @@
       {% endif %}
         </a>
         <div>
-            {% if '/gul/' in request.path %}
+            {% if '/posts/' in request.path %}
             {% if gul.video %}
             <video src="{{ gul.video.url }}" controls></video>
             {% endif %}
@@ -19,7 +19,7 @@
         <h5 class="card-title">{{ gul.name }}</h5>
             </a>
         <p class="card-text">
-            {% if '/guls/' in request.path %}
+            {% if '/posts/' in request.path %}
             {{ gul.info|linebreaks }}
             {% else %}
             {{ gul.info|truncatewords:10 }}
@@ -30,6 +30,9 @@
         <small class="text-muted">{{ gul.created }}</small>
         <a href="{% url 'gul_by_tur' gul.turi.id  %}">
             <small class="text-muted">{{ gul.turi.name }}</small>
+        </a>
+        <a href="{% url 'update_post' gul.pk  %}">
+            <i class="fas fa-wrench"></i>
         </a>
       </div>
     </div>
